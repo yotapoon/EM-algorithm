@@ -2,7 +2,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy import stats as st
-from mpl_toolkits.mplot3d import Axes3D
 #K:the number of class<-given!!
 K = 4
 x = np.loadtxt("x.csv",delimiter = ",")
@@ -74,23 +73,7 @@ print("sigma",sigma)
 
 np.savetxt("z.csv",gamma,delimiter = ",")
 
-z_pred = np.argmax(gamma,axis = 1)
-#scatter plot of data
-"""
-fig = plt.figure()
-ax = Axes3D(fig)
-ax.set_xlabel("X")
-ax.set_ylabel("Y")
-ax.set_zlabel("Z")
-color = ["g","b","r","y"]
-x_colored = []
-for k in range(K):
-	x_colored.append(x[z_pred == k])
-	ax.plot(x_colored[k][:,0],x_colored[k][:,1],x_colored[k][:,2],"o",color = color[k])
 
-ax.view_init(elev = 30,azim = 45)
-fig.savefig("pred_em.jpg")
-"""
 with open("params.dat",mode = "w") as f_params:
 	f_params.write("pi\n")
 	np.savetxt(f_params,pi)
